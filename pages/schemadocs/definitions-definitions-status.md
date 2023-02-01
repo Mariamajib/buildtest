@@ -28,6 +28,7 @@ The status section describes how buildtest detects PASS/FAIL on test. By default
 | [assert\_le](#assert_le)              | `array`  | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_le.md "definitions.schema.json#/definitions/status/properties/assert_le")             |
 | [assert\_gt](#assert_gt)              | `array`  | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_gt.md "definitions.schema.json#/definitions/status/properties/assert_gt")             |
 | [assert\_eq](#assert_eq)              | `array`  | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_eq.md "definitions.schema.json#/definitions/status/properties/assert_eq")             |
+| [assert\_ne](#assert_ne)              | `array`  | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_ne.md "definitions.schema.json#/definitions/status/properties/assert_ne")             |
 | [assert\_range](#assert_range)        | `array`  | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_range.md "definitions.schema.json#/definitions/status/properties/assert_range")       |
 | [exists](#exists)                     | `array`  | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/exists")                            |
 | [is\_dir](#is_dir)                    | `array`  | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_dir")                            |
@@ -249,6 +250,24 @@ Perform assertion of equality (=) with reference value
 ### assert\_eq Type
 
 `object[]` ([Details](definitions-definitions-status-properties-assert_eq-items.md))
+
+## assert\_ne
+
+Perform assertion of not equal with reference value
+
+`assert_ne`
+
+*   is optional
+
+*   Type: `object[]` ([Details](definitions-definitions-status-properties-assert_ne-items.md))
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_ne.md "definitions.schema.json#/definitions/status/properties/assert_ne")
+
+### assert\_ne Type
+
+`object[]` ([Details](definitions-definitions-status-properties-assert_ne-items.md))
 
 ## assert\_range
 
