@@ -34,6 +34,10 @@
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-status-properties-assert_range-items.md) – `definitions.schema.json#/definitions/status/properties/assert_range/items`
 
+*   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-status-properties-contains-items.md) – `definitions.schema.json#/definitions/status/properties/contains/items`
+
+*   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-status-properties-not_contains-items.md) – `definitions.schema.json#/definitions/status/properties/not_contains/items`
+
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-needs-items-0-oneof-1.md) – `definitions.schema.json#/definitions/needs/items/0/oneOf/1`
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-regex.md "Perform regular expression search using re") – `definitions.schema.json#/definitions/regex`
@@ -167,6 +171,10 @@
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-status-properties-assert_ne.md "Perform assertion of not equal with reference value") – `definitions.schema.json#/definitions/status/properties/assert_ne`
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-status-properties-assert_range.md "Perform assertion based on lower and upper bound") – `definitions.schema.json#/definitions/status/properties/assert_range`
+
+*   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-status-properties-contains-items-properties-ref.md "Specify a list of reference value") – `definitions.schema.json#/definitions/status/properties/contains/items/properties/ref`
+
+*   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-status-properties-not_contains-items-properties-ref.md "Specify a list of reference value") – `definitions.schema.json#/definitions/status/properties/not_contains/items/properties/ref`
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-module-properties-swap.md "Swap modules using module swap") – `definitions.schema.json#/definitions/module/properties/swap`
 
