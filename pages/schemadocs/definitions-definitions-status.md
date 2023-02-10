@@ -27,6 +27,7 @@ The status section describes how buildtest detects PASS/FAIL on test. By default
 | [assert\_ge](#assert_ge)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_ge.md "definitions.schema.json#/definitions/status/properties/assert_ge")             |
 | [assert\_le](#assert_le)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_le.md "definitions.schema.json#/definitions/status/properties/assert_le")             |
 | [assert\_gt](#assert_gt)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_gt.md "definitions.schema.json#/definitions/status/properties/assert_gt")             |
+| [assert\_lt](#assert_lt)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_lt.md "definitions.schema.json#/definitions/status/properties/assert_lt")             |
 | [assert\_eq](#assert_eq)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_eq.md "definitions.schema.json#/definitions/status/properties/assert_eq")             |
 | [assert\_ne](#assert_ne)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_ne.md "definitions.schema.json#/definitions/status/properties/assert_ne")             |
 | [assert\_range](#assert_range)        | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_range.md "definitions.schema.json#/definitions/status/properties/assert_range")       |
@@ -234,6 +235,24 @@ Perform assertion of greater than (>) with reference value
 ### assert\_gt Type
 
 `object[]` ([Details](definitions-definitions-status-properties-assert_gt-items.md))
+
+## assert\_lt
+
+Perform assertion of less than (<) with reference value
+
+`assert_lt`
+
+*   is optional
+
+*   Type: `object[]` ([Details](definitions-definitions-status-properties-assert_lt-items.md))
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_lt.md "definitions.schema.json#/definitions/status/properties/assert_lt")
+
+### assert\_lt Type
+
+`object[]` ([Details](definitions-definitions-status-properties-assert_lt-items.md))
 
 ## assert\_eq
 
