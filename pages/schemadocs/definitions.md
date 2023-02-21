@@ -354,6 +354,7 @@ Reference this group by using
 | [assert\_range](#assert_range)        | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_range.md "definitions.schema.json#/definitions/status/properties/assert_range")       |
 | [contains](#contains)                 | Not specified | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-contains.md "definitions.schema.json#/definitions/status/properties/contains")               |
 | [not\_contains](#not_contains)        | Not specified | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-not_contains.md "definitions.schema.json#/definitions/status/properties/not_contains")       |
+| [is\_symlink](#is_symlink)            | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_symlink")                        |
 | [exists](#exists)                     | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/exists")                            |
 | [is\_dir](#is_dir)                    | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_dir")                            |
 | [is\_file](#is_file)                  | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_file")                           |
@@ -664,6 +665,30 @@ Check if metric value not in a list of reference values
 #### not\_contains Type
 
 unknown
+
+### is\_symlink
+
+Check for list of files or directory paths that are symbolic links
+
+`is_symlink`
+
+*   is optional
+
+*   Type: `string[]`
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_symlink")
+
+#### is\_symlink Type
+
+`string[]`
+
+#### is\_symlink Constraints
+
+**minimum number of items**: the minimum number of items for this array is: `1`
+
+**unique items**: all items in this array must be unique. Duplicates are not allowed.
 
 ### exists
 
