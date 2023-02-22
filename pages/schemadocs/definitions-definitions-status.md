@@ -23,6 +23,7 @@ The status section describes how buildtest detects PASS/FAIL on test. By default
 | [lsf\_job\_state](#lsf_job_state)     | `string`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-lsf_job_state.md "definitions.schema.json#/definitions/status/properties/lsf_job_state")     |
 | [returncode](#returncode)             | Merged        | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-int_or_list.md "definitions.schema.json#/definitions/status/properties/returncode")                            |
 | [regex](#regex)                       | `object`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex.md "definitions.schema.json#/definitions/status/properties/regex")                                       |
+| [file\_regex](#file_regex)            | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex.md "definitions.schema.json#/definitions/status/properties/file_regex")                             |
 | [runtime](#runtime)                   | `object`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-runtime.md "definitions.schema.json#/definitions/status/properties/runtime")                 |
 | [assert\_ge](#assert_ge)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_ge.md "definitions.schema.json#/definitions/status/properties/assert_ge")             |
 | [assert\_le](#assert_le)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_le.md "definitions.schema.json#/definitions/status/properties/assert_le")             |
@@ -164,6 +165,24 @@ Perform regular expression search using `re.search` python module on stdout/stde
 ### regex Type
 
 `object` ([Details](definitions-definitions-regex.md))
+
+## file\_regex
+
+Specify a list of regular expressions to match files in the current working directory. The regular expression is matched using `re.search` python module.
+
+`file_regex`
+
+*   is optional
+
+*   Type: `object[]` ([Details](definitions-definitions-file_regex-items.md))
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-file_regex.md "definitions.schema.json#/definitions/status/properties/file_regex")
+
+### file\_regex Type
+
+`object[]` ([Details](definitions-definitions-file_regex-items.md))
 
 ## runtime
 

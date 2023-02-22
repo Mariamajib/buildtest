@@ -20,6 +20,8 @@
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-env-items.md) – `definitions.schema.json#/definitions/env/items`
 
+*   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-file_regex-items.md) – `definitions.schema.json#/definitions/file_regex/items`
+
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-status-properties-runtime.md "The runtime section will pass test based on min and max values and compare with actual runtime") – `definitions.schema.json#/definitions/status/properties/runtime`
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-status-properties-assert_ge-items.md) – `definitions.schema.json#/definitions/status/properties/assert_ge/items`
@@ -185,6 +187,8 @@
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-list_of_strings.md) – `definitions.schema.json#/definitions/list_of_strings`
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-list_of_ints.md) – `definitions.schema.json#/definitions/list_of_ints`
+
+*   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-file_regex.md "Specify a list of regular expressions to match files in the current working directory") – `definitions.schema.json#/definitions/file_regex`
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-needs.md "A list of test names that are dependency before runnning job") – `definitions.schema.json#/definitions/needs`
 
