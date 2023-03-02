@@ -38,6 +38,7 @@ The status section describes how buildtest detects PASS/FAIL on test. By default
 | [exists](#exists)                     | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/exists")                            |
 | [is\_dir](#is_dir)                    | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_dir")                            |
 | [is\_file](#is_file)                  | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_file")                           |
+| [file\_count](#file_count)            | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-file_count.md "definitions.schema.json#/definitions/status/properties/file_count")           |
 | [state](#state)                       | `string`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-state.md "definitions.schema.json#/definitions/status/properties/state")                                       |
 
 ## slurm\_job\_state
@@ -459,6 +460,24 @@ Check for list of filepaths are files
 **minimum number of items**: the minimum number of items for this array is: `1`
 
 **unique items**: all items in this array must be unique. Duplicates are not allowed.
+
+## file\_count
+
+Perform assertion check by comparing file count in a directory
+
+`file_count`
+
+*   is optional
+
+*   Type: `object[]` ([Details](definitions-definitions-status-properties-file_count-items.md))
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-status-properties-file_count.md "definitions.schema.json#/definitions/status/properties/file_count")
+
+### file\_count Type
+
+`object[]` ([Details](definitions-definitions-status-properties-file_count-items.md))
 
 ## state
 

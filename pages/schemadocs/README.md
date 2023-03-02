@@ -42,6 +42,8 @@
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-status-properties-not_contains-items.md) – `definitions.schema.json#/definitions/status/properties/not_contains/items`
 
+*   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-status-properties-file_count-items.md) – `definitions.schema.json#/definitions/status/properties/file_count/items`
+
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-needs-items-0-oneof-1.md) – `definitions.schema.json#/definitions/needs/items/0/oneOf/1`
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-regex.md "Perform regular expression search using re") – `definitions.schema.json#/definitions/regex`
@@ -181,6 +183,8 @@
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-status-properties-contains-items-properties-ref.md "Specify a list of reference value") – `definitions.schema.json#/definitions/status/properties/contains/items/properties/ref`
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-status-properties-not_contains-items-properties-ref.md "Specify a list of reference value") – `definitions.schema.json#/definitions/status/properties/not_contains/items/properties/ref`
+
+*   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-status-properties-file_count.md "Perform assertion check by comparing file count in a directory") – `definitions.schema.json#/definitions/status/properties/file_count`
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-module-properties-swap.md "Swap modules using module swap") – `definitions.schema.json#/definitions/module/properties/swap`
 
