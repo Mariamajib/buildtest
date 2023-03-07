@@ -40,6 +40,28 @@
         }
       ]
     },
+    "file_regex": {
+      "type": "array",
+      "description": "Specify a list of regular expressions to match files in the current working directory. The regular expression is matched using ``re.search`` python module. ",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "file",
+          "exp"
+        ],
+        "properties": {
+          "file": {
+              "type": "string",
+              "description": "Specify a file name to match with regular expression"
+          },
+          "exp": {
+              "type": "string",
+              "description": "Specify a regular expression to run on the selected file name"
+          }
+        }
+      }
+    },
     "regex": {
       "type": "object",
       "description": "Perform regular expression search using ``re.search`` python module on stdout/stderr stream for reporting if test ``PASS``. ",
@@ -200,6 +222,11 @@
           "$ref": "#/definitions/regex",
           "description": "Determine state (PASS/FAIL) of test based on regular expression on output or error stream"
         },
+        "file_regex": {
+          "$ref": "#/definitions/file_regex",
+          "description": "Perform a regular expression search on a list of arbitrary files, if expression matches for any file buildtest will report as ``PASS``. This field is useful for checking output of a test that is not captured in stdout or stderr. "
+        },
+
         "runtime": {
           "type": "object",
           "description": "The runtime section will pass test based on min and max values and compare with actual runtime. ",
@@ -263,6 +290,28 @@
         "assert_gt": {
           "type": "array",
           "description": "Perform assertion of greater than (>) with reference value",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "name",
+              "ref"
+            ],
+            "properties": {
+              "name": {
+                "type": "string",
+                "description": "Name of metric to use for comparison"
+              },
+              "ref": {
+                "type": "number",
+                "description": "Specify reference value (int,float) for comparison"
+              }
+            }
+          }
+        },
+        "assert_lt": {
+          "type": "array",
+          "description": "Perform assertion of less than (<) with reference value",
           "items": {
             "type": "object",
             "additionalProperties": false,
@@ -393,7 +442,7 @@
             }
           }
         },
-         "not_contains": {
+        "not_contains": {
           "description": "Check if metric value not in a list of reference values ",
           "items": {
             "type": "object",
@@ -415,6 +464,10 @@
             }
           }
         },
+        "is_symlink": {
+          "description": "Check for list of files or directory paths that are symbolic links",
+          "$ref": "#/definitions/list_of_strings"
+        },
         "exists": {
           "description": "Check for list of file or directory path for existences using os.path.exists",
           "$ref": "#/definitions/list_of_strings"
@@ -426,6 +479,58 @@
         "is_file": {
           "description": "Check for list of filepaths are files",
           "$ref": "#/definitions/list_of_strings"
+        },
+        "file_count": {
+          "description": "Perform assertion check by comparing file count in a directory",
+          "type": "array",
+          "items": {
+            "type": "object",
+            "additionalProperties": false,
+            "required": [
+              "dir",
+              "count"
+            ],
+            "properties": {
+              "dir": {
+                "type": "string",
+                "description": "Directory path to check for file count"
+              },
+              "count": {
+                "type": "integer",
+                "description": "Number of files expected in directory",
+                "minimum": 0
+              },
+              "depth": {
+                "type": "integer",
+                "description": "Depth of directory to search for files",
+                "minimum": 0
+              },
+              "ext": {
+                "$ref": "#/definitions/string_or_list",
+                "description": "File extension to filter files in directory"
+              },
+              "filepattern": {
+                "type": "string",
+                "description": "Specify a regular expression when searching for files in directory"
+              },
+              "filetype": {
+                "type": "string",
+                "description": "Specify file type when searching for files in directory. It can be 'file', 'dir' or 'symlink'",
+                "enum": [
+                  "file",
+                  "dir",
+                  "symlink"
+                ]
+              },
+              "file_traverse_limit": {
+                "type": "integer",
+                "description": "Limit the number of files to traverse when searching for files in directory",
+                "minimum": 1,
+                "default": 10000,
+                "maximum": 999999
+              }
+            }
+          }
         },
         "state": {
           "$ref": "#/definitions/state",

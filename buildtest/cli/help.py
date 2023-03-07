@@ -83,6 +83,9 @@ def print_build_help():
         "buildtest build -b <file> --timeout 60",
         "Test will run till it reaches timeout of 60sec and then it will be cancelled if it exceeds the limit.",
     )
+    table.add_row(
+        "buildtest build -t python --limit=5", "Limit number of test runs to 5"
+    )
 
     console.print(table)
 
@@ -99,6 +102,9 @@ def print_buildspec_help():
         "Discover and validate all buildspecs and load all validated buildspecs in cache",
     )
     table.add_row("buildtest buildspec find --rebuild", "Rebuild cache file")
+    table.add_row(
+        "buildtest buildspec find --pager", "Paginate output of buildspec cache"
+    )
     table.add_row(
         "buildtest buildspec find --root /tmp --rebuild",
         "Discover buildspecs in /tmp and rebuild buildspec cache",
@@ -136,6 +142,10 @@ def print_buildspec_help():
     table.add_row("buildtest buildspec find --helpfilter", "Show all filter fields")
     table.add_row("buildtest buildspec find --helpformat", "Show all format fields")
     table.add_row("buildtest buildspec find --terse", "Display output in terse format")
+    table.add_row(
+        "buildtest buildspec find --row-count",
+        "Print total count of records from the table",
+    )
     table.add_row(
         "buildtest buildspec find --count=5",
         "Limit output of buildspec cache to 5 elements",
@@ -176,7 +186,8 @@ def print_buildspec_help():
 
     table.add_row("buildtest buildspec summary", "Show summary of buildspec cache file")
     table.add_row(
-        "buildtest buildspec summary --pager", "Pageants the output of summary"
+        "buildtest buildspec summary --pager",
+        "Paginate the output of summary for buildspec cache",
     )
     table.add_row(
         "buildtest buildspec show python_hello",
@@ -230,6 +241,9 @@ def print_config_help():
     table.add_column("Description", justify="left", style="magenta")
 
     table.add_row("buildtest config view", "View content of configuration file")
+    table.add_row(
+        "buildtest config view --pager", "Paginate output of configuration file"
+    )
     table.add_row(
         "buildtest config validate", "Validate configuration file with JSON schema"
     )
@@ -329,6 +343,7 @@ def print_report_help():
     table.add_column("Description", justify="left", style="magenta")
 
     table.add_row("buildtest report", "Display all test results")
+    table.add_row("buildtest report --pager", "Paginate output of test results")
     table.add_row(
         "buildtest report --filter returncode=0", "Filter test results by returncode=0"
     )
@@ -370,6 +385,9 @@ def print_report_help():
     table.add_row("buildtest report summary", "Show summary of test report")
     table.add_row(
         "buildtest report summary --detailed", "Show detailed summary of test report"
+    )
+    table.add_row(
+        "buildtest report summary --pager", "Paginate output of report summary"
     )
     console.print(table)
 

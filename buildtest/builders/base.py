@@ -22,12 +22,16 @@ from buildtest.buildsystem.checks import (
     assert_ge_check,
     assert_gt_check,
     assert_le_check,
+    assert_lt_check,
     assert_ne_check,
     assert_range_check,
     contains_check,
     exists_check,
+    file_count_check,
+    file_regex_check,
     is_dir_check,
     is_file_check,
+    is_symlink_check,
     notcontains_check,
     regex_check,
     returncode_check,
@@ -545,7 +549,6 @@ class BuilderBase(ABC):
         if modules:
             lines.append("# Specify list of modules to load")
             for module in modules.split(","):
-
                 lines.append(f"module load {module}")
 
         lines += [
@@ -715,13 +718,11 @@ class BuilderBase(ABC):
             lines += [f"#BSUB -e {self.name}.err"]
 
         if self.pbs:
-
             for line in self.pbs:
                 lines.append(f"#PBS {line}")
             lines.append(f"#PBS -N {self.name}")
 
         if self.cobalt:
-
             for line in self.cobalt:
                 lines.append(f"#COBALT {line}")
             lines.append(f"#COBALT --jobname={self.name}")
@@ -867,13 +868,11 @@ class BuilderBase(ABC):
             return
 
         for key in self.metrics.keys():
-
             # default value of metric is empty string
             self.metadata["metrics"][key] = ""
 
             # apply regex on stdout/stderr and assign value to metrics
             if self.metrics[key].get("regex"):
-
                 if self.metrics[key]["regex"]["stream"] == "stdout":
                     content = self._output
                 elif self.metrics[key]["regex"]["stream"] == "stderr":
@@ -961,21 +960,24 @@ class BuilderBase(ABC):
 
         # if status is defined in Buildspec, then check for returncode and regex
         if self.status:
-
             slurm_job_state_match = False
             pbs_job_state_match = False
             lsf_job_state_match = False
             assert_ge_match = False
             assert_le_match = False
             assert_gt_match = False
+            assert_lt_match = False
             assert_eq_match = False
             assert_ne_match = False
             assert_range_match = False
             assert_contains_match = False
             assert_notcontains_match = False
+            assert_is_symlink = False
             assert_exists = False
             assert_is_dir = False
             assert_is_file = False
+            file_regex_match = False
+            assert_file_count = False
 
             # returncode_match is boolean to check if reference returncode matches return code from test
             returncode_match = returncode_check(self)
@@ -989,6 +991,9 @@ class BuilderBase(ABC):
             self.metadata["check"]["regex"] = regex_match
             self.metadata["check"]["runtime"] = runtime_match
             self.metadata["check"]["returncode"] = returncode_match
+
+            if self.status.get("file_regex"):
+                file_regex_match = file_regex_check(self)
 
             if self.status.get("slurm_job_state") and isinstance(self.job, SlurmJob):
                 slurm_job_state_match = (
@@ -1010,6 +1015,9 @@ class BuilderBase(ABC):
             if self.status.get("assert_gt"):
                 assert_gt_match = assert_gt_check(self)
 
+            if self.status.get("assert_lt"):
+                assert_lt_match = assert_lt_check(self)
+
             if self.status.get("assert_eq"):
                 assert_eq_match = assert_eq_check(self)
 
@@ -1025,6 +1033,9 @@ class BuilderBase(ABC):
             if self.status.get("not_contains"):
                 assert_notcontains_match = notcontains_check(self)
 
+            if self.status.get("is_symlink"):
+                assert_is_symlink = is_symlink_check(builder=self)
+
             if self.status.get("exists"):
                 assert_exists = exists_check(builder=self)
 
@@ -1034,11 +1045,15 @@ class BuilderBase(ABC):
             if self.status.get("is_file"):
                 assert_is_file = is_file_check(builder=self)
 
+            if self.status.get("file_count"):
+                assert_file_count = file_count_check(builder=self)
+
             # if any of checks is True we set the 'state' to PASS
             state = any(
                 [
                     returncode_match,
                     regex_match,
+                    file_regex_match,
                     slurm_job_state_match,
                     pbs_job_state_match,
                     lsf_job_state_match,
@@ -1046,14 +1061,17 @@ class BuilderBase(ABC):
                     assert_ge_match,
                     assert_le_match,
                     assert_gt_match,
+                    assert_lt_match,
                     assert_eq_match,
                     assert_ne_match,
                     assert_range_match,
                     assert_contains_match,
                     assert_notcontains_match,
+                    assert_is_symlink,
                     assert_exists,
                     assert_is_dir,
                     assert_is_file,
+                    assert_file_count,
                 ]
             )
             if state:

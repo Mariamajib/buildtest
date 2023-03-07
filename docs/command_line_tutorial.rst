@@ -257,7 +257,7 @@ We have an alias ``buildtest cg`` for **buildtest config** command. If you want 
 
     .. command-output:: buildtest cg view
 
-We also support color themes (``buildtest cg view --theme <theme>``) and paging ``buildtest cg view --pager``.
+We also support color themes (``buildtest cg view --theme <theme>``) when showing content of buildtest configuration.
 
 Buildtest configuration file defines one or more :ref:`executors <configuring_executors>` that are used when
 writing test. Every test must be run by an executor. To retrieve all executors in a flat-listing you can run::

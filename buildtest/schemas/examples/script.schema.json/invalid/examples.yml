@@ -102,7 +102,7 @@ buildspecs:
     description: The returncode must be an int and not a number
     run: exit 1
     status:
-      returncode:  1.01
+      returncode: 1.01
 
   non_int_returncodes_list:
     type: script
@@ -110,7 +110,7 @@ buildspecs:
     description: The returncode must be a list of integers and no numbers
     run: exit 1
     status:
-      returncode:  [1, 2.230]
+      returncode: [1, 2.230]
 
   invalid_shell_type:
     type: script
@@ -151,7 +151,7 @@ buildspecs:
     type: script
     executor: generic.local.bash
     description: invalid tag value must be all string items
-    tags: ["network", 400 ]
+    tags: ["network", 400]
     run: hostname
 
   additionalProperties_test:
@@ -165,7 +165,7 @@ buildspecs:
     type: script
     executor: generic.local.bash
     description: test additional properties in status object. This is not allowed
-    sbatch: [ "-n 2", "-q normal", "-t 10"]
+    sbatch: ["-n 2", "-q normal", "-t 10"]
     run: hostname
     status:
       slurm_job_state: "COMPLETED"
@@ -271,4 +271,104 @@ buildspecs:
     description: this test will fail validation, because item must be a string
     run: mkdir -p 1
     status:
-      exists: [ 1 ]
+      exists: [1]
+
+  invalid_property_filename:
+    type: script
+    executor: generic.local.bash
+    description: Invalid property name filename under file_regex
+    run: |
+      echo "Hello" > hello.txt
+    status:
+      file_regex:
+        - filename: hello.txt
+          exp: '^(Hello)$'
+
+  testing_additionalProperties_file_regex:
+    type: script
+    executor: generic.local.bash
+    description: Testing for additional properties in file_regex
+    run: |
+      echo "Hello" > hello.txt
+    status:
+      file_regex:
+        - file: hello.txt
+          exp: '^(Hello)$'
+          FOO: BAR
+  file_count_property_count_failure:
+    type: script
+    executor: generic.local.bash
+    description: The count property in file_count must be greater than 0
+    run: hostname
+    status:
+      file_count:
+        - dir: /tmp
+          count: -1
+
+  file_count_property_depth_failure:
+    type: script
+    executor: generic.local.bash
+    description: The depth property in file_count must be greater than 0
+    run: hostname
+    status:
+      file_count:
+        - dir: /tmp
+          count: 0
+          depth: -1
+  file_count_required_property_check:
+    type: script
+    executor: generic.local.bash
+    description: The dir property in file_count is required
+    run: hostname
+    status:
+      file_count:
+        - count: 0
+  file_count_additionalProperties_check:
+    type: script
+    executor: generic.local.bash
+    description: Testing for additional properties in file_count
+    run: hostname
+    status:
+      file_count:
+        - dir: /tmp
+          count: 0
+          FOO: BAR
+    file_count_minimum_check_on_count:
+      type: script
+      executor: generic.local.bash
+      description: The count property must be 0 or greater
+      run: mkdir foo
+      status:
+        file_count:
+          - dir: foo
+            count: -1
+  file_count_filetype_invalid_value:
+    type: script
+    executor: generic.local.bash
+    description: Invalid value for filetype, it must be 'file', 'dir' or 'symlink'
+    run: mkdir foo
+    status:
+      file_count:
+        - dir: foo
+          count: -1
+          filetype: 'filename'
+  minimum_check_file_traverse_limit:
+    type: script
+    executor: generic.local.bash
+    description: The minimum value for file_traverse_limit is 1
+    run: mkdir foo
+    status:
+      file_count:
+        - dir: foo
+          count: 1
+          file_traverse_limit: 0
+  maximum_check_file_traverse_limit:
+    type: script
+    executor: generic.local.bash
+    description: The minimum value for file_traverse_limit is 999999
+    run: mkdir foo
+    status:
+      file_count:
+        - dir: foo
+          count: 1
+          file_traverse_limit: 1000000

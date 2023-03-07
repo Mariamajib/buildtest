@@ -27,7 +27,6 @@ configuration.validate(moduletool=system.system["moduletool"])
 
 @pytest.mark.cli
 def test_config_systems():
-
     schema_files = os.path.join(
         SCHEMA_ROOT, "examples", "settings.schema.json", "valid"
     )
@@ -41,15 +40,14 @@ def test_config_systems():
 @pytest.mark.cli
 def test_view_configuration():
     view_configuration(configuration)
-    # testing -  buildtest config view --theme emacs
+    # buildtest config view --theme emacs
     view_configuration(configuration, theme="emacs")
 
-    # testing - buildtest config view --pager
+    # buildtest config view --pager
     view_configuration(configuration, pager=True)
 
 
 def test_valid_config_schemas():
-
     valid_schema_dir = os.path.join(pytest_root, "examples", "config_schemas", "valid")
     schema_config = load_schema(DEFAULT_SETTINGS_SCHEMA)
     for schema in walk_tree(valid_schema_dir, ".yml"):
@@ -71,7 +69,7 @@ def test_config_path():
 def test_config_executors():
     buildexecutor = BuildExecutor(configuration)
 
-    # run buildtest config executors --json
+    # buildtest config executors --json
     view_executors(
         configuration=configuration,
         buildexecutor=buildexecutor,
@@ -81,7 +79,7 @@ def test_config_executors():
         invalid=False,
     )
 
-    # run buildtest config executors --yaml
+    # buildtest config executors --yaml
     view_executors(
         configuration=configuration,
         buildexecutor=buildexecutor,
@@ -91,7 +89,7 @@ def test_config_executors():
         invalid=False,
     )
 
-    # run buildtest config executors -d
+    # buildtest config executors -d
     view_executors(
         configuration=configuration,
         buildexecutor=buildexecutor,
@@ -101,7 +99,7 @@ def test_config_executors():
         invalid=False,
     )
 
-    # run buildtest config executors -i
+    # buildtest config executors -i
     view_executors(
         configuration=configuration,
         buildexecutor=buildexecutor,
@@ -111,7 +109,7 @@ def test_config_executors():
         invalid=True,
     )
 
-    # run buildtest config executors
+    # buildtest config executors
     view_executors(
         configuration=configuration,
         buildexecutor=buildexecutor,
@@ -132,7 +130,7 @@ def test_disabled_invalid_executors():
 
     print("reading config file:", configfile)
     be = BuildExecutor(configuration)
-    # run buildtest config executors
+    # buildtest config executors -d
     view_executors(
         configuration=configuration,
         buildexecutor=be,
@@ -142,7 +140,7 @@ def test_disabled_invalid_executors():
         invalid=False,
     )
 
-    # run buildtest config executors
+    # buildtest config executors -i
     view_executors(
         configuration=configuration,
         buildexecutor=be,

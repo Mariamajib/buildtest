@@ -2,7 +2,15 @@ import logging
 import re
 
 from buildtest.defaults import console
-from buildtest.utils.file import is_dir, is_file, resolve_path
+from buildtest.utils.file import (
+    is_dir,
+    is_file,
+    is_symlink,
+    read_file,
+    resolve_path,
+    search_files,
+    walk_tree,
+)
 
 logger = logging.getLogger(__name__)
 
@@ -35,7 +43,6 @@ def returncode_check(builder):
 
     # if 'returncode' field set for 'status' check the returncode if its not set we return False
     if "returncode" in builder.status.keys():
-
         # returncode can be an integer or list of integers
         buildspec_returncode = builder.status["returncode"]
 
@@ -99,6 +106,60 @@ def runtime_check(builder):
     return float(min_time) < actual_runtime < float(max_time)
 
 
+def file_regex_check(builder):
+    """This method will check if file exists and conduct a regular expression check using
+    `re.search <https://docs.python.org/3/library/re.html#re.search>`_ method. This method is invoked if ``file_regex`` is defined in ``status`` field.
+    If file doesn't exist we return False. If file exists we read the file and apply regular expression for every file specified in ``file_regex`` field.
+
+    Args:
+        builder (buildtest.builders.base.BuilderBase): An instance of BuilderBase class used for printing the builder name
+
+    Returns:
+        bool: Returns True if there is a regex match otherwise returns False.
+    """
+
+    assert_file_regex = []
+
+    for file_check in builder.status["file_regex"]:
+        fname = file_check["file"]
+        resolved_fname = resolve_path(fname)
+        if not resolved_fname:
+            msg = f"[blue]{builder}[/]: Unable to resolve file path: {fname}"
+            logger.error(msg)
+            console.print(msg, style="red")
+            assert_file_regex.append(False)
+            continue
+
+        if not is_file(resolved_fname):
+            msg = f"[blue]{builder}[/]: File: {resolved_fname} is not a file"
+            logger.error(msg)
+            console.print(msg, style="red")
+            assert_file_regex.append(False)
+            continue
+
+        # read file and apply regex
+        content = read_file(resolved_fname)
+        regex = re.search(file_check["exp"], content)
+        console.print(
+            f"[blue]{builder}[/]: Performing regex expression '{file_check['exp']}' on file {resolved_fname}"
+        )
+
+        if not regex:
+            msg = f"[blue]{builder}[/]: Regular expression: '{file_check['exp']}' is not found in file: {resolved_fname}"
+            logger.error(msg)
+            console.print(msg, style="red")
+            assert_file_regex.append(False)
+            continue
+
+        assert_file_regex.append(True)
+
+        console.print(
+            f"[blue]{builder}[/]: [green]Regular expression on file {resolved_fname} is a MATCH![/green]"
+        )
+
+    return all(assert_file_regex)
+
+
 def regex_check(builder):
     """This method conducts a regular expression check using
     `re.search <https://docs.python.org/3/library/re.html#re.search>`_
@@ -150,6 +211,36 @@ def regex_check(builder):
     console.print(f"[blue]{builder}[/]: Regular Expression Match - [green]Success![/]")
 
     return True
+
+
+def is_symlink_check(builder):
+    """This method will perform symlink status check for ``is_symlink`` property. Each item is tested for symblolic link
+    and returns a boolean to inform if all items are symbolic links or not.
+
+    Args:
+        builder (buildtest.builders.base.BuilderBase): An instance of BuilderBase class used for printing the builder name
+    Returns:
+        bool: A boolean for is_symlink status check
+    """
+    assert_exists = []
+    console.print(
+        f"[blue]{builder}[/]: Check all items:  {builder.status['is_symlink']}  for symbolic links"
+    )
+    for filename in builder.status["is_symlink"]:
+        if is_symlink(filename):
+            console.print(
+                f"[blue]{builder}[/]: {filename} is a symbolic link to {resolve_path(filename)}"
+            )
+            assert_exists.append(True)
+        else:
+            console.print(
+                f"[blue]{builder}[/]: {filename} is broken or not a symbolic link"
+            )
+            assert_exists.append(False)
+
+    bool_check = all(assert_exists)
+    console.print(f"[blue]{builder}[/]: Symlink Check: {bool_check}")
+    return bool_check
 
 
 def exists_check(builder):
@@ -475,6 +566,77 @@ def assert_gt_check(builder):
     bool_check = all(assert_check)
 
     console.print(f"[blue]{builder}[/]: Greater Check: {bool_check}")
+    return bool_check
+
+
+def assert_lt_check(builder):
+    """Perform check on assert less than when ``assert_lt`` is specified in buildspec. The return is a boolean value that determines if the check has passed.
+    One can specify multiple assert checks to check each metric with its reference value. When multiple items are specified, the operation is a logical AND and all checks
+    must be ``True``.
+
+    Args:
+        builder (buildtest.builders.base.BuilderBase): An instance of BuilderBase class used for printing the builder name
+
+    Returns:
+        bool: True or False for performance check ``assert_lt``
+    """
+
+    # a list containing booleans to evaluate reference check for each metric
+    assert_check = []
+
+    metric_names = list(builder.metadata["metrics"].keys())
+
+    # iterate over each metric in buildspec and determine reference check for each metric
+    for metric in builder.status["assert_lt"]:
+        name = metric["name"]
+        ref_value = metric["ref"]
+
+        # if metric is not valid, then mark as False
+        if not builder.is_valid_metric(name):
+            msg = f"[blue]{builder}[/]: Unable to find metric: [red]{name}[/red]. List of valid metrics are the following: {metric_names}"
+            console.print(msg)
+            logger.warning(msg)
+            assert_check.append(False)
+            continue
+
+        metric_value = builder.metadata["metrics"][name]
+
+        if not is_metrics_defined(builder, name):
+            assert_check.append(False)
+            continue
+
+        if builder.metrics[name]["type"] == "str":
+            msg = f"[blue]{builder}[/]: Unable to convert metric: [red]'{name}'[/red] for comparison. The type must be 'int' or 'float' but recieved [red]{builder.metrics[name]['type']}[/red]. "
+            console.print(msg)
+            logger.warning(msg)
+            assert_check.append(False)
+            continue
+
+        # convert metric value and reference value to int
+        conv_value = convert_metrics(
+            metric_value=metric_value,
+            dtype=builder.metrics[name]["type"],
+        )
+        ref_value = convert_metrics(
+            metric_value=ref_value,
+            dtype=builder.metrics[name]["type"],
+        )
+
+        # if there is a type mismatch then let's stop now before we do comparison
+        if (conv_value is None) or (ref_value is None):
+            assert_check.append(False)
+            continue
+
+        bool_check = conv_value < ref_value
+        console.print(
+            f"[blue]{builder}[/]: testing metric: {name} if {conv_value} < {ref_value} - Check: {bool_check}"
+        )
+        assert_check.append(bool_check)
+
+    # perform a logical AND on the list and return the boolean result
+    bool_check = all(assert_check)
+
+    console.print(f"[blue]{builder}[/]: Less Than Check: {bool_check}")
     return bool_check
 
 
@@ -807,3 +969,69 @@ def assert_range_check(builder):
 
     console.print(f"[blue]{builder}[/]: Range Check: {range_check}")
     return range_check
+
+
+def file_count_check(builder):
+    """This method is used to perform file count check when ``file_count`` property is specified
+    in status check. This method will evaluate the number of files in a directory and compare it
+    with the reference specified via ``count``. The comparison is done using ``==`` operator.
+
+    Args:
+        builder (buildtest.builders.base.BuilderBase): An instance of BuilderBase class used for printing the builder name
+
+    Returns:
+        bool: True or False for performance check ``file_count``
+    """
+    # a list containing booleans to evaluate reference check for each metric
+    assert_check = []
+
+    # iterate over each metric in buildspec and determine reference check for each metric
+    for dir_check in builder.status["file_count"]:
+        if not is_dir(dir_check["dir"]):
+            msg = f"[blue]{builder}[/]: Unable to find directory: [red]{dir_check['dir']}[/red]."
+            console.print(msg)
+            logger.warning(msg)
+            assert_check.append(False)
+            continue
+
+        files_by_directory_walk = []
+        files_by_regex = []
+
+        # need to walk directory tree if 'ext' attribute is specified or 'filepattern' attribute is not specified.
+        if dir_check.get("ext") or not dir_check.get("filepattern"):
+            files_by_directory_walk = walk_tree(
+                dir_check["dir"],
+                ext=dir_check.get("ext"),
+                max_depth=dir_check.get("depth"),
+                file_type=dir_check.get("filetype"),
+                file_traverse_limit=dir_check.get("file_traverse_limit"),
+            )
+        # if 'filepattern' attribute is specified we will search for files via search_files method which will perform directory traversal based on regular expression
+        if dir_check.get("filepattern"):
+            files_by_regex = search_files(
+                dir_check["dir"],
+                regex_pattern=dir_check["filepattern"],
+                max_depth=dir_check.get("depth"),
+                file_type=dir_check.get("filetype"),
+                file_traverse_limit=dir_check.get("file_traverse_limit"),
+            )
+
+        total_files = list(set(files_by_directory_walk + files_by_regex))
+        bool_check = len(total_files) == dir_check["count"]
+        assert_check.append(bool_check)
+
+        # need to get a resolved path for printing purposes. User can specify arbitrary directory name it may not exist on filesystem
+        resolved_dirname = resolve_path(dir_check["dir"], exist=False)
+        logger.debug(
+            f"[blue]{builder}[/]: Found the following files: {total_files} in directory: {resolved_dirname}"
+        )
+
+        console.print(
+            f"[blue]{builder}[/]: Found {len(total_files)} file in directory: {resolved_dirname}. Comparing with reference count: {dir_check['count']}. Comparison check is {len(total_files)} == {dir_check['count']} which evaluates to {bool_check}"
+        )
+
+    # perform a logical AND on the list and return the boolean result
+    bool_check = all(assert_check)
+
+    console.print(f"[blue]{builder}[/]: File Count Check: {bool_check}")
+    return bool_check
