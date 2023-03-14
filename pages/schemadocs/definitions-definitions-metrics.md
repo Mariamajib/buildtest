@@ -16,15 +16,15 @@ This field is used for defining one or more metrics that is recorded for each te
 
 # metrics Properties
 
-| Property | Type     | Required | Nullable       | Defined by                                                                                                                                       |
-| :------- | :------- | :------- | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `^.*$`   | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-metrics_field.md "definitions.schema.json#/definitions/metrics/patternProperties/^.*$") |
+| Property              | Type   | Required | Nullable       | Defined by                                                                                                                  |
+| :-------------------- | :----- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | Merged | Optional | cannot be null | [compiler schema](definitions-definitions-metrics_field.md "compiler.schema.json#/properties/metrics/additionalProperties") |
 
-## Pattern: `^.*$`
+## Additional Properties
 
-Name of metric
+Additional properties are allowed, as long as they follow this schema:
 
-`^.*$`
+
 
 *   is optional
 
@@ -32,8 +32,14 @@ Name of metric
 
 *   cannot be null
 
-*   defined in: [JSON Schema Definitions File. ](definitions-definitions-metrics_field.md "definitions.schema.json#/definitions/metrics/patternProperties/^.*$")
+*   defined in: [compiler schema](definitions-definitions-metrics_field.md "compiler.schema.json#/properties/metrics/additionalProperties")
 
-### ^.\*$ Type
+### additionalProperties Type
 
 `object` ([Details](definitions-definitions-metrics_field.md))
+
+one (and only one) of
+
+*   [Untitled undefined type in JSON Schema Definitions File. ](definitions-definitions-metrics_field-oneof-0.md "check type definition")
+
+*   [Untitled undefined type in JSON Schema Definitions File. ](definitions-definitions-metrics_field-oneof-1.md "check type definition")

@@ -46,6 +46,8 @@
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-needs-items-0-oneof-1.md) – `definitions.schema.json#/definitions/needs/items/0/oneOf/1`
 
+*   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-file_regex_in_metrics.md "Specify a regular expressions on a filepath used for assigning value to metrics") – `definitions.schema.json#/definitions/file_regex_in_metrics`
+
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-regex.md "Perform regular expression search using re") – `definitions.schema.json#/definitions/regex`
 
 *   [Untitled object in JSON Schema Definitions File. ](./definitions-definitions-env.md "One or more key value pairs for an environment (key=value)") – `definitions.schema.json#/definitions/env`

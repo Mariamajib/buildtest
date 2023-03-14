@@ -71,6 +71,97 @@ Reference this group by using
 | Property | Type | Required | Nullable | Defined by |
 | :------- | :--- | :------- | :------- | :--------- |
 
+## Definitions group file\_regex\_in\_metrics
+
+Reference this group by using
+
+```json
+{"$ref":"definitions.schema.json#/definitions/file_regex_in_metrics"}
+```
+
+| Property                                      | Type          | Required | Nullable       | Defined by                                                                                                                                                                      |
+| :-------------------------------------------- | :------------ | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [additionalProperties](#additionalproperties) | Not specified | Optional | cannot be null | [Untitled schema](undefined.md "undefined#undefined")                                                                                                                           |
+| [file](#file)                                 | `string`      | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics-properties-file.md "definitions.schema.json#/definitions/file_regex_in_metrics/properties/file") |
+| [exp](#exp)                                   | `string`      | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics-properties-exp.md "definitions.schema.json#/definitions/file_regex_in_metrics/properties/exp")   |
+| [item](#item)                                 | `integer`     | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics-properties-item.md "definitions.schema.json#/definitions/file_regex_in_metrics/properties/item") |
+
+### additionalProperties
+
+no description
+
+`additionalProperties`
+
+*   is optional
+
+*   Type: unknown
+
+*   cannot be null
+
+*   defined in: [Untitled schema](undefined.md "undefined#undefined")
+
+#### Untitled schema Type
+
+unknown
+
+### file
+
+Specify a file name to match with regular expression
+
+`file`
+
+*   is required
+
+*   Type: `string`
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics-properties-file.md "definitions.schema.json#/definitions/file_regex_in_metrics/properties/file")
+
+#### file Type
+
+`string`
+
+### exp
+
+Specify a regular expression to run on the selected file name
+
+`exp`
+
+*   is required
+
+*   Type: `string`
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics-properties-exp.md "definitions.schema.json#/definitions/file_regex_in_metrics/properties/exp")
+
+#### exp Type
+
+`string`
+
+### item
+
+Specify the item number used to index element in `match.group() <https://docs.python.org/3/library/re.html#match-objects>`\_
+
+`item`
+
+*   is optional
+
+*   Type: `integer`
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics-properties-item.md "definitions.schema.json#/definitions/file_regex_in_metrics/properties/item")
+
+#### item Type
+
+`integer`
+
+#### item Constraints
+
+**minimum**: the value of this number must greater than or equal to: `0`
+
 ## Definitions group regex
 
 Reference this group by using
@@ -82,8 +173,8 @@ Reference this group by using
 | Property          | Type      | Required | Nullable       | Defined by                                                                                                                                          |
 | :---------------- | :-------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [stream](#stream) | `string`  | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex-properties-stream.md "definitions.schema.json#/definitions/regex/properties/stream") |
-| [exp](#exp)       | `string`  | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex-properties-exp.md "definitions.schema.json#/definitions/regex/properties/exp")       |
-| [item](#item)     | `integer` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex-properties-item.md "definitions.schema.json#/definitions/regex/properties/item")     |
+| [exp](#exp-1)     | `string`  | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex-properties-exp.md "definitions.schema.json#/definitions/regex/properties/exp")       |
+| [item](#item-1)   | `integer` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex-properties-item.md "definitions.schema.json#/definitions/regex/properties/item")     |
 
 ### stream
 
@@ -237,10 +328,11 @@ Reference this group by using
 {"$ref":"definitions.schema.json#/definitions/metrics_field"}
 ```
 
-| Property        | Type     | Required | Nullable       | Defined by                                                                                                                                                      |
-| :-------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [type](#type)   | `string` | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-metrics_field-properties-type.md "definitions.schema.json#/definitions/metrics_field/properties/type") |
-| [regex](#regex) | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex.md "definitions.schema.json#/definitions/metrics_field/properties/regex")                        |
+| Property                   | Type     | Required | Nullable       | Defined by                                                                                                                                                      |
+| :------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [type](#type)              | `string` | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-metrics_field-properties-type.md "definitions.schema.json#/definitions/metrics_field/properties/type") |
+| [regex](#regex)            | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex.md "definitions.schema.json#/definitions/metrics_field/properties/regex")                        |
+| [file\_regex](#file_regex) | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics.md "definitions.schema.json#/definitions/metrics_field/properties/file_regex")   |
 
 ### type
 
@@ -288,6 +380,24 @@ Perform regular expression search using `re.search` python module on stdout/stde
 
 `object` ([Details](definitions-definitions-regex.md))
 
+### file\_regex
+
+Specify a regular expressions on a filepath used for assigning value to metrics. The regular expression is matched using `re.search` python module.
+
+`file_regex`
+
+*   is optional
+
+*   Type: `object` ([Details](definitions-definitions-file_regex_in_metrics.md))
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics.md "definitions.schema.json#/definitions/metrics_field/properties/file_regex")
+
+#### file\_regex Type
+
+`object` ([Details](definitions-definitions-file_regex_in_metrics.md))
+
 ## Definitions group metrics
 
 Reference this group by using
@@ -296,15 +406,15 @@ Reference this group by using
 {"$ref":"definitions.schema.json#/definitions/metrics"}
 ```
 
-| Property | Type     | Required | Nullable       | Defined by                                                                                                                                       |
-| :------- | :------- | :------- | :------------- | :----------------------------------------------------------------------------------------------------------------------------------------------- |
-| `^.*$`   | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-metrics_field.md "definitions.schema.json#/definitions/metrics/patternProperties/^.*$") |
+| Property              | Type   | Required | Nullable       | Defined by                                                                                                                                     |
+| :-------------------- | :----- | :------- | :------------- | :--------------------------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | Merged | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-metrics_field.md "definitions.schema.json#/definitions/metrics/additionalProperties") |
 
-### Pattern: `^.*$`
+### Additional Properties
 
-Name of metric
+Additional properties are allowed, as long as they follow this schema:
 
-`^.*$`
+
 
 *   is optional
 
@@ -312,11 +422,17 @@ Name of metric
 
 *   cannot be null
 
-*   defined in: [JSON Schema Definitions File. ](definitions-definitions-metrics_field.md "definitions.schema.json#/definitions/metrics/patternProperties/^.*$")
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-metrics_field.md "definitions.schema.json#/definitions/metrics/additionalProperties")
 
-#### ^.\*$ Type
+#### additionalProperties Type
 
 `object` ([Details](definitions-definitions-metrics_field.md))
+
+one (and only one) of
+
+*   [Untitled undefined type in JSON Schema Definitions File. ](definitions-definitions-metrics_field-oneof-0.md "check type definition")
+
+*   [Untitled undefined type in JSON Schema Definitions File. ](definitions-definitions-metrics_field-oneof-1.md "check type definition")
 
 ## Definitions group state
 
@@ -355,7 +471,7 @@ Reference this group by using
 | [lsf\_job\_state](#lsf_job_state)     | `string`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-lsf_job_state.md "definitions.schema.json#/definitions/status/properties/lsf_job_state")     |
 | [returncode](#returncode)             | Merged        | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-int_or_list.md "definitions.schema.json#/definitions/status/properties/returncode")                            |
 | [regex](#regex-1)                     | `object`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex.md "definitions.schema.json#/definitions/status/properties/regex")                                       |
-| [file\_regex](#file_regex)            | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex.md "definitions.schema.json#/definitions/status/properties/file_regex")                             |
+| [file\_regex](#file_regex-1)          | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex.md "definitions.schema.json#/definitions/status/properties/file_regex")                             |
 | [runtime](#runtime)                   | `object`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-runtime.md "definitions.schema.json#/definitions/status/properties/runtime")                 |
 | [assert\_ge](#assert_ge)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_ge.md "definitions.schema.json#/definitions/status/properties/assert_ge")             |
 | [assert\_le](#assert_le)              | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-assert_le.md "definitions.schema.json#/definitions/status/properties/assert_le")             |

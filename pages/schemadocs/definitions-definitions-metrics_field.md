@@ -1,7 +1,7 @@
 # Untitled object in JSON Schema Definitions File.  Schema
 
 ```txt
-definitions.schema.json#/definitions/metrics_field
+definitions.schema.json#/definitions/metrics/additionalProperties
 ```
 
 
@@ -10,16 +10,23 @@ definitions.schema.json#/definitions/metrics_field
 | :------------------ | :--------- | :------------- | :----------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | No           | Forbidden         | Forbidden             | none                | [definitions.schema.json\*](../out/definitions.schema.json "open original schema") |
 
-## metrics\_field Type
+## additionalProperties Type
 
 `object` ([Details](definitions-definitions-metrics_field.md))
 
-# metrics\_field Properties
+one (and only one) of
 
-| Property        | Type     | Required | Nullable       | Defined by                                                                                                                                                      |
-| :-------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [type](#type)   | `string` | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-metrics_field-properties-type.md "definitions.schema.json#/definitions/metrics_field/properties/type") |
-| [regex](#regex) | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex.md "definitions.schema.json#/definitions/metrics_field/properties/regex")                        |
+*   [Untitled undefined type in JSON Schema Definitions File. ](definitions-definitions-metrics_field-oneof-0.md "check type definition")
+
+*   [Untitled undefined type in JSON Schema Definitions File. ](definitions-definitions-metrics_field-oneof-1.md "check type definition")
+
+# additionalProperties Properties
+
+| Property                   | Type     | Required | Nullable       | Defined by                                                                                                                                                      |
+| :------------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [type](#type)              | `string` | Required | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-metrics_field-properties-type.md "definitions.schema.json#/definitions/metrics_field/properties/type") |
+| [regex](#regex)            | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-regex.md "definitions.schema.json#/definitions/metrics_field/properties/regex")                        |
+| [file\_regex](#file_regex) | `object` | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics.md "definitions.schema.json#/definitions/metrics_field/properties/file_regex")   |
 
 ## type
 
@@ -66,3 +73,21 @@ Perform regular expression search using `re.search` python module on stdout/stde
 ### regex Type
 
 `object` ([Details](definitions-definitions-regex.md))
+
+## file\_regex
+
+Specify a regular expressions on a filepath used for assigning value to metrics. The regular expression is matched using `re.search` python module.
+
+`file_regex`
+
+*   is optional
+
+*   Type: `object` ([Details](definitions-definitions-file_regex_in_metrics.md))
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-file_regex_in_metrics.md "definitions.schema.json#/definitions/metrics_field/properties/file_regex")
+
+### file\_regex Type
+
+`object` ([Details](definitions-definitions-file_regex_in_metrics.md))
