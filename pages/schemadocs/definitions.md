@@ -488,6 +488,7 @@ Reference this group by using
 | [is\_file](#is_file)                  | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-list_of_strings.md "definitions.schema.json#/definitions/status/properties/is_file")                           |
 | [file\_count](#file_count)            | `array`       | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-file_count.md "definitions.schema.json#/definitions/status/properties/file_count")           |
 | [state](#state)                       | `string`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-state.md "definitions.schema.json#/definitions/status/properties/state")                     |
+| [mode](#mode)                         | `string`      | Optional | cannot be null | [JSON Schema Definitions File. ](definitions-definitions-status-properties-mode.md "definitions.schema.json#/definitions/status/properties/mode")                       |
 
 ### slurm\_job\_state
 
@@ -953,6 +954,33 @@ explicitly mark state of test regardless of status calculation
 | :------- | :---------- |
 | `"PASS"` |             |
 | `"FAIL"` |             |
+
+### mode
+
+Determine how the status check is resolved, for instance it can be logical AND or OR
+
+`mode`
+
+*   is optional
+
+*   Type: `string`
+
+*   cannot be null
+
+*   defined in: [JSON Schema Definitions File. ](definitions-definitions-status-properties-mode.md "definitions.schema.json#/definitions/status/properties/mode")
+
+#### mode Type
+
+`string`
+
+#### mode Constraints
+
+**enum**: the value of this property must be equal to one of the following values:
+
+| Value   | Explanation |
+| :------ | :---------- |
+| `"any"` |             |
+| `"all"` |             |
 
 ## Definitions group BB
 
