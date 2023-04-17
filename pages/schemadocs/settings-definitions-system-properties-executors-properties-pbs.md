@@ -16,15 +16,15 @@ The `pbs` section is used for declaring PBS executors for running jobs using PBS
 
 # pbs Properties
 
-| Property | Type     | Required | Nullable       | Defined by                                                                                                                                                          |
-| :------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `^.*$`   | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-pbs.md "settings.schema.json#/definitions/system/properties/executors/properties/pbs/patternProperties/^.*$") |
+| Property              | Type     | Required | Nullable       | Defined by                                                                                                                                                        |
+| :-------------------- | :------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-pbs.md "settings.schema.json#/definitions/system/properties/executors/properties/pbs/additionalProperties") |
 
-## Pattern: `^.*$`
+## Additional Properties
+
+Additional properties are allowed, as long as they follow this schema:
 
 An instance object of cobalt executor
-
-`^.*$`
 
 *   is optional
 
@@ -32,8 +32,8 @@ An instance object of cobalt executor
 
 *   cannot be null
 
-*   defined in: [buildtest configuration schema](settings-definitions-pbs.md "settings.schema.json#/definitions/system/properties/executors/properties/pbs/patternProperties/^.*$")
+*   defined in: [buildtest configuration schema](settings-definitions-pbs.md "settings.schema.json#/definitions/system/properties/executors/properties/pbs/additionalProperties")
 
-### ^.\*$ Type
+### additionalProperties Type
 
 `object` ([Details](settings-definitions-pbs.md))

@@ -1,7 +1,7 @@
 # Untitled undefined type in buildtest configuration schema Schema
 
 ```txt
-settings.schema.json#/definitions/system/properties/executors/properties/lsf/patternProperties
+settings.schema.json#/definitions/system/properties/executors/properties/slurm/propertyNames
 ```
 
 
@@ -10,6 +10,16 @@ settings.schema.json#/definitions/system/properties/executors/properties/lsf/pat
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [settings.schema.json\*](../out/settings.schema.json "open original schema") |
 
-## patternProperties Type
+## propertyNames Type
 
 unknown
+
+## propertyNames Constraints
+
+**pattern**: the string must match the following regular expression:&#x20;
+
+```regexp
+^[A-Za-z0-9_.-]+$
+```
+
+[try pattern](https://regexr.com/?expression=%5E%5BA-Za-z0-9_.-%5D%2B%24 "try regular expression with regexr.com")

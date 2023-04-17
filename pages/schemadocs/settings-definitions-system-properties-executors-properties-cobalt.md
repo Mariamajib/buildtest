@@ -16,15 +16,15 @@ The `cobalt` section is used for declaring Cobalt executors for running jobs usi
 
 # cobalt Properties
 
-| Property | Type     | Required | Nullable       | Defined by                                                                                                                                                                |
-| :------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `^.*$`   | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-cobalt.md "settings.schema.json#/definitions/system/properties/executors/properties/cobalt/patternProperties/^.*$") |
+| Property              | Type     | Required | Nullable       | Defined by                                                                                                                                                              |
+| :-------------------- | :------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-cobalt.md "settings.schema.json#/definitions/system/properties/executors/properties/cobalt/additionalProperties") |
 
-## Pattern: `^.*$`
+## Additional Properties
+
+Additional properties are allowed, as long as they follow this schema:
 
 An instance object of cobalt executor
-
-`^.*$`
 
 *   is optional
 
@@ -32,8 +32,8 @@ An instance object of cobalt executor
 
 *   cannot be null
 
-*   defined in: [buildtest configuration schema](settings-definitions-cobalt.md "settings.schema.json#/definitions/system/properties/executors/properties/cobalt/patternProperties/^.*$")
+*   defined in: [buildtest configuration schema](settings-definitions-cobalt.md "settings.schema.json#/definitions/system/properties/executors/properties/cobalt/additionalProperties")
 
-### ^.\*$ Type
+### additionalProperties Type
 
 `object` ([Details](settings-definitions-cobalt.md))

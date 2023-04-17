@@ -16,15 +16,15 @@ The `slurm` section is used for declaring Slurm executors for running jobs using
 
 # slurm Properties
 
-| Property | Type     | Required | Nullable       | Defined by                                                                                                                                                              |
-| :------- | :------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `^.*$`   | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-slurm.md "settings.schema.json#/definitions/system/properties/executors/properties/slurm/patternProperties/^.*$") |
+| Property              | Type     | Required | Nullable       | Defined by                                                                                                                                                            |
+| :-------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-slurm.md "settings.schema.json#/definitions/system/properties/executors/properties/slurm/additionalProperties") |
 
-## Pattern: `^.*$`
+## Additional Properties
+
+Additional properties are allowed, as long as they follow this schema:
 
 An instance object of slurm executor
-
-`^.*$`
 
 *   is optional
 
@@ -32,8 +32,8 @@ An instance object of slurm executor
 
 *   cannot be null
 
-*   defined in: [buildtest configuration schema](settings-definitions-slurm.md "settings.schema.json#/definitions/system/properties/executors/properties/slurm/patternProperties/^.*$")
+*   defined in: [buildtest configuration schema](settings-definitions-slurm.md "settings.schema.json#/definitions/system/properties/executors/properties/slurm/additionalProperties")
 
-### ^.\*$ Type
+### additionalProperties Type
 
 `object` ([Details](settings-definitions-slurm.md))

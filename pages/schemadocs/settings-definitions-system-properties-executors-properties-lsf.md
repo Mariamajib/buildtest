@@ -16,15 +16,15 @@ The `lsf` section is used for declaring LSF executors for running jobs using LSF
 
 # lsf Properties
 
-| Property | Type     | Required | Nullable       | Defined by                                                                                                                                                          |
-| :------- | :------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| `^.*$`   | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-lsf.md "settings.schema.json#/definitions/system/properties/executors/properties/lsf/patternProperties/^.*$") |
+| Property              | Type     | Required | Nullable       | Defined by                                                                                                                                                        |
+| :-------------------- | :------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-lsf.md "settings.schema.json#/definitions/system/properties/executors/properties/lsf/additionalProperties") |
 
-## Pattern: `^.*$`
+## Additional Properties
+
+Additional properties are allowed, as long as they follow this schema:
 
 An instance object of lsf executor
-
-`^.*$`
 
 *   is optional
 
@@ -32,8 +32,8 @@ An instance object of lsf executor
 
 *   cannot be null
 
-*   defined in: [buildtest configuration schema](settings-definitions-lsf.md "settings.schema.json#/definitions/system/properties/executors/properties/lsf/patternProperties/^.*$")
+*   defined in: [buildtest configuration schema](settings-definitions-lsf.md "settings.schema.json#/definitions/system/properties/executors/properties/lsf/additionalProperties")
 
-### ^.\*$ Type
+### additionalProperties Type
 
 `object` ([Details](settings-definitions-lsf.md))

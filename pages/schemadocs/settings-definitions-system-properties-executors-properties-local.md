@@ -16,15 +16,15 @@ The `local` section is used for declaring local executors for running jobs on lo
 
 # local Properties
 
-| Property | Type     | Required | Nullable       | Defined by                                                                                                                                                              |
-| :------- | :------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `^.*$`   | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-local.md "settings.schema.json#/definitions/system/properties/executors/properties/local/patternProperties/^.*$") |
+| Property              | Type     | Required | Nullable       | Defined by                                                                                                                                                            |
+| :-------------------- | :------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Additional Properties | `object` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-local.md "settings.schema.json#/definitions/system/properties/executors/properties/local/additionalProperties") |
 
-## Pattern: `^.*$`
+## Additional Properties
+
+Additional properties are allowed, as long as they follow this schema:
 
 An instance object of local executor
-
-`^.*$`
 
 *   is optional
 
@@ -32,8 +32,8 @@ An instance object of local executor
 
 *   cannot be null
 
-*   defined in: [buildtest configuration schema](settings-definitions-local.md "settings.schema.json#/definitions/system/properties/executors/properties/local/patternProperties/^.*$")
+*   defined in: [buildtest configuration schema](settings-definitions-local.md "settings.schema.json#/definitions/system/properties/executors/properties/local/additionalProperties")
 
-### ^.\*$ Type
+### additionalProperties Type
 
 `object` ([Details](settings-definitions-local.md))
