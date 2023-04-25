@@ -14,20 +14,11 @@ View test results via `spack test results` after running tests via `spack test r
 
 `object` ([Details](spack-definitions-test-properties-results.md))
 
-any of
-
-*   [Untitled undefined type in spack schema version](spack-definitions-test-properties-results-anyof-0.md "check type definition")
-
-*   [Untitled undefined type in spack schema version](spack-definitions-test-properties-results-anyof-1.md "check type definition")
-
-*   [Untitled undefined type in spack schema version](spack-definitions-test-properties-results-anyof-2.md "check type definition")
-
 # results Properties
 
 | Property          | Type     | Required | Nullable       | Defined by                                                                                                                                                        |
 | :---------------- | :------- | :------- | :------------- | :---------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [option](#option) | `string` | Optional | cannot be null | [spack schema version](spack-definitions-test-properties-results-properties-option.md "spack.schema.json#/definitions/test/properties/results/properties/option") |
-| [suite](#suite)   | `array`  | Optional | cannot be null | [spack schema version](definitions-definitions-list_of_strings.md "spack.schema.json#/definitions/test/properties/results/properties/suite")                      |
 | [specs](#specs)   | `array`  | Optional | cannot be null | [spack schema version](definitions-definitions-list_of_strings.md "spack.schema.json#/definitions/test/properties/results/properties/specs")                      |
 
 ## option
@@ -47,30 +38,6 @@ Pass options to `spack test results`
 ### option Type
 
 `string`
-
-## suite
-
-Report results by  suite name by running `spack test results <suite>`.
-
-`suite`
-
-*   is optional
-
-*   Type: `string[]`
-
-*   cannot be null
-
-*   defined in: [spack schema version](definitions-definitions-list_of_strings.md "spack.schema.json#/definitions/test/properties/results/properties/suite")
-
-### suite Type
-
-`string[]`
-
-### suite Constraints
-
-**minimum number of items**: the minimum number of items for this array is: `1`
-
-**unique items**: all items in this array must be unique. Duplicates are not allowed.
 
 ## specs
 

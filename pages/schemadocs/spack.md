@@ -690,7 +690,7 @@ Reference this group by using
 | :----------------------------- | :-------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------- |
 | [remove\_tests](#remove_tests) | `boolean` | Optional | cannot be null | [spack schema version](spack-definitions-test-properties-remove_tests.md "spack.schema.json#/definitions/test/properties/remove_tests") |
 | [run](#run)                    | `object`  | Required | cannot be null | [spack schema version](spack-definitions-test-properties-run.md "spack.schema.json#/definitions/test/properties/run")                   |
-| [results](#results)            | Merged    | Required | cannot be null | [spack schema version](spack-definitions-test-properties-results.md "spack.schema.json#/definitions/test/properties/results")           |
+| [results](#results)            | `object`  | Required | cannot be null | [spack schema version](spack-definitions-test-properties-results.md "spack.schema.json#/definitions/test/properties/results")           |
 
 ### remove\_tests
 
@@ -745,11 +745,3 @@ View test results via `spack test results` after running tests via `spack test r
 #### results Type
 
 `object` ([Details](spack-definitions-test-properties-results.md))
-
-any of
-
-*   [Untitled undefined type in spack schema version](spack-definitions-test-properties-results-anyof-0.md "check type definition")
-
-*   [Untitled undefined type in spack schema version](spack-definitions-test-properties-results-anyof-1.md "check type definition")
-
-*   [Untitled undefined type in spack schema version](spack-definitions-test-properties-results-anyof-2.md "check type definition")
