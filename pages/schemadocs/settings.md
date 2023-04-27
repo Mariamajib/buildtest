@@ -58,6 +58,7 @@ Reference this group by using
 | [logdir](#logdir)                    | `string`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-logdir.md "settings.schema.json#/definitions/system/properties/logdir")                   |
 | [moduletool](#moduletool)            | `string`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-moduletool.md "settings.schema.json#/definitions/system/properties/moduletool")           |
 | [timeout](#timeout)                  | `integer` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-timeout.md "settings.schema.json#/definitions/system/properties/timeout")                 |
+| [buildspecs](#buildspecs)            | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs.md "settings.schema.json#/definitions/system/properties/buildspecs")           |
 | [processor](#processor)              | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-processor.md "settings.schema.json#/definitions/system/properties/processor")             |
 | [compilers](#compilers)              | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-compilers.md "settings.schema.json#/definitions/system/properties/compilers")             |
 | [executors](#executors)              | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-executors.md "settings.schema.json#/definitions/system/properties/executors")             |
@@ -224,6 +225,24 @@ Specify timeout duration in number of seconds
 #### timeout Constraints
 
 **minimum**: the value of this number must greater than or equal to: `1`
+
+### buildspecs
+
+Specify configuration for `buildtest buildspec` command
+
+`buildspecs`
+
+*   is optional
+
+*   Type: `object` ([Details](settings-definitions-system-properties-buildspecs.md))
+
+*   cannot be null
+
+*   defined in: [buildtest configuration schema](settings-definitions-system-properties-buildspecs.md "settings.schema.json#/definitions/system/properties/buildspecs")
+
+#### buildspecs Type
+
+`object` ([Details](settings-definitions-system-properties-buildspecs.md))
 
 ### processor
 
