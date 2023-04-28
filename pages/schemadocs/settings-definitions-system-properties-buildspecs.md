@@ -23,6 +23,7 @@ Specify configuration for `buildtest buildspec` command
 | [formatfields](#formatfields) | `string`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-formatfields.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/formatfields") |
 | [terse](#terse)               | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-terse.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/terse")               |
 | [pager](#pager)               | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-pager.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/pager")               |
+| [root](#root)                 | `array`   | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-root.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/root")                 |
 
 ## rebuild
 
@@ -117,3 +118,21 @@ A boolean to determine whether to enable paging when viewing buildspec cache
 ### pager Type
 
 `boolean`
+
+## root
+
+Specify a list of directory paths to search buildspecs. This field can be used with `buildtest buildspec find` to rebuild buildspec cache or build tests using `buildtest build` command
+
+`root`
+
+*   is optional
+
+*   Type: `string[]`
+
+*   cannot be null
+
+*   defined in: [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-root.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/root")
+
+### root Type
+
+`string[]`

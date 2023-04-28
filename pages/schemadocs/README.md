@@ -202,7 +202,7 @@
 
 *   [Untitled array in buildtest configuration schema](./settings-definitions-system-properties-hostnames.md "Specify a list of hostnames to check where buildtest can run for the given system record") – `settings.schema.json#/definitions/system/properties/hostnames`
 
-*   [Untitled array in buildtest configuration schema](./settings-definitions-system-properties-buildspec_roots.md "Specify a list of directory paths to search buildspecs") – `settings.schema.json#/definitions/system/properties/buildspec_roots`
+*   [Untitled array in buildtest configuration schema](./settings-definitions-system-properties-buildspecs-properties-root.md "Specify a list of directory paths to search buildspecs") – `settings.schema.json#/definitions/system/properties/buildspecs/properties/root`
 
 *   [Untitled array in buildtest configuration schema](./settings-definitions-module-properties-swap.md "Swap modules using module swap") – `settings.schema.json#/definitions/module/properties/swap`
 
