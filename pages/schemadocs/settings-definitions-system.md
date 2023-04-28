@@ -25,6 +25,7 @@ settings.schema.json#/definitions/system
 | [logdir](#logdir)           | `string`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-logdir.md "settings.schema.json#/definitions/system/properties/logdir")           |
 | [moduletool](#moduletool)   | `string`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-moduletool.md "settings.schema.json#/definitions/system/properties/moduletool")   |
 | [timeout](#timeout)         | `integer` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-timeout.md "settings.schema.json#/definitions/system/properties/timeout")         |
+| [pager](#pager)             | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-pager.md "settings.schema.json#/definitions/system/properties/pager")             |
 | [buildspecs](#buildspecs)   | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs.md "settings.schema.json#/definitions/system/properties/buildspecs")   |
 | [processor](#processor)     | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-processor.md "settings.schema.json#/definitions/system/properties/processor")     |
 | [compilers](#compilers)     | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-compilers.md "settings.schema.json#/definitions/system/properties/compilers")     |
@@ -174,6 +175,24 @@ Specify timeout duration in number of seconds
 ### timeout Constraints
 
 **minimum**: the value of this number must greater than or equal to: `1`
+
+## pager
+
+A boolean to determine whether to enable paging when viewing buildspec cache
+
+`pager`
+
+*   is optional
+
+*   Type: `boolean`
+
+*   cannot be null
+
+*   defined in: [buildtest configuration schema](settings-definitions-system-properties-pager.md "settings.schema.json#/definitions/system/properties/pager")
+
+### pager Type
+
+`boolean`
 
 ## buildspecs
 

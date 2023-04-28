@@ -22,7 +22,6 @@ Specify configuration for `buildtest buildspec` command
 | [count](#count)               | `integer` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-count.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/count")               |
 | [formatfields](#formatfields) | `string`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-formatfields.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/formatfields") |
 | [terse](#terse)               | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-terse.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/terse")               |
-| [pager](#pager)               | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-pager.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/pager")               |
 | [root](#root)                 | `array`   | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-root.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/root")                 |
 
 ## rebuild
@@ -98,24 +97,6 @@ A boolean to determine whether to enable terse mode when viewing buildspec cache
 *   defined in: [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-terse.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/terse")
 
 ### terse Type
-
-`boolean`
-
-## pager
-
-A boolean to determine whether to enable paging when viewing buildspec cache
-
-`pager`
-
-*   is optional
-
-*   Type: `boolean`
-
-*   cannot be null
-
-*   defined in: [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-pager.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/pager")
-
-### pager Type
 
 `boolean`
 

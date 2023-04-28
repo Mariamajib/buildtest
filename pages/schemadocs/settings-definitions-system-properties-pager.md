@@ -1,7 +1,7 @@
 # Untitled boolean in buildtest configuration schema Schema
 
 ```txt
-settings.schema.json#/definitions/system/properties/buildspecs/properties/pager
+settings.schema.json#/definitions/system/properties/pager
 ```
 
 A boolean to determine whether to enable paging when viewing buildspec cache
