@@ -1,15 +1,15 @@
-# Untitled boolean in buildtest configuration schema Schema
+# Untitled string in buildtest configuration schema Schema
 
 ```txt
-settings.schema.json#/definitions/system/properties/buildspecs/properties/terse
+settings.schema.json#/definitions/system/properties/report/properties/format
 ```
 
-A boolean to determine whether to enable terse mode
+Determine the format fields to display when viewing table results
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                   |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------- |
 | Can be instantiated | No         | Unknown status | Unknown identifiability | Forbidden         | Allowed               | none                | [settings.schema.json\*](../out/settings.schema.json "open original schema") |
 
-## terse Type
+## format Type
 
-`boolean`
+`string`

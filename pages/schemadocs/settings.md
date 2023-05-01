@@ -40,6 +40,39 @@ settings.schema.json
 
 # buildtest configuration schema Definitions
 
+## Definitions group terse
+
+Reference this group by using
+
+```json
+{"$ref":"settings.schema.json#/definitions/terse"}
+```
+
+| Property | Type | Required | Nullable | Defined by |
+| :------- | :--- | :------- | :------- | :--------- |
+
+## Definitions group format
+
+Reference this group by using
+
+```json
+{"$ref":"settings.schema.json#/definitions/format"}
+```
+
+| Property | Type | Required | Nullable | Defined by |
+| :------- | :--- | :------- | :------- | :--------- |
+
+## Definitions group count
+
+Reference this group by using
+
+```json
+{"$ref":"settings.schema.json#/definitions/count"}
+```
+
+| Property | Type | Required | Nullable | Defined by |
+| :------- | :--- | :------- | :------- | :--------- |
+
 ## Definitions group system
 
 Reference this group by using
@@ -58,7 +91,8 @@ Reference this group by using
 | [moduletool](#moduletool)   | `string`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-moduletool.md "settings.schema.json#/definitions/system/properties/moduletool")   |
 | [timeout](#timeout)         | `integer` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-timeout.md "settings.schema.json#/definitions/system/properties/timeout")         |
 | [pager](#pager)             | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-pager.md "settings.schema.json#/definitions/system/properties/pager")             |
-| [buildspecs](#buildspecs)   | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs.md "settings.schema.json#/definitions/system/properties/buildspecs")   |
+| [buildspecs](#buildspecs)   | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs.md "settings.schema.json#/definitions/system/properties/buildspecs")   |
+| [report](#report)           | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-report.md "settings.schema.json#/definitions/system/properties/report")           |
 | [processor](#processor)     | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-processor.md "settings.schema.json#/definitions/system/properties/processor")     |
 | [compilers](#compilers)     | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-compilers.md "settings.schema.json#/definitions/system/properties/compilers")     |
 | [executors](#executors)     | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-executors.md "settings.schema.json#/definitions/system/properties/executors")     |
@@ -232,7 +266,7 @@ Specify configuration for `buildtest buildspec` command
 
 `buildspecs`
 
-*   is optional
+*   is required
 
 *   Type: `object` ([Details](settings-definitions-system-properties-buildspecs.md))
 
@@ -243,6 +277,24 @@ Specify configuration for `buildtest buildspec` command
 #### buildspecs Type
 
 `object` ([Details](settings-definitions-system-properties-buildspecs.md))
+
+### report
+
+
+
+`report`
+
+*   is required
+
+*   Type: `object` ([Details](settings-definitions-system-properties-report.md))
+
+*   cannot be null
+
+*   defined in: [buildtest configuration schema](settings-definitions-system-properties-report.md "settings.schema.json#/definitions/system/properties/report")
+
+#### report Type
+
+`object` ([Details](settings-definitions-system-properties-report.md))
 
 ### processor
 

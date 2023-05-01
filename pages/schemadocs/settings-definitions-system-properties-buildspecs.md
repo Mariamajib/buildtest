@@ -16,13 +16,13 @@ Specify configuration for `buildtest buildspec` command
 
 # buildspecs Properties
 
-| Property                      | Type      | Required | Nullable       | Defined by                                                                                                                                                                                              |
-| :---------------------------- | :-------- | :------- | :------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [rebuild](#rebuild)           | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-rebuild.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/rebuild")           |
-| [count](#count)               | `integer` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-count.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/count")               |
-| [formatfields](#formatfields) | `string`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-formatfields.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/formatfields") |
-| [terse](#terse)               | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-terse.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/terse")               |
-| [root](#root)                 | `array`   | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-root.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/root")                 |
+| Property            | Type      | Required | Nullable       | Defined by                                                                                                                                                                                    |
+| :------------------ | :-------- | :------- | :------------- | :-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [rebuild](#rebuild) | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-rebuild.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/rebuild") |
+| [count](#count)     | `integer` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-count.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/count")     |
+| [format](#format)   | `string`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-format.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/format")   |
+| [terse](#terse)     | `boolean` | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-terse.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/terse")     |
+| [root](#root)       | `array`   | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-root.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/root")       |
 
 ## rebuild
 
@@ -44,7 +44,7 @@ A boolean to determine whether to rebuild buildspec cache
 
 ## count
 
-Determine number of records to display when running `buildtest buildspec find`
+Determine number of records to display in a table
 
 `count`
 
@@ -64,11 +64,11 @@ Determine number of records to display when running `buildtest buildspec find`
 
 **minimum**: the value of this number must greater than or equal to: `1`
 
-## formatfields
+## format
 
-Determine the format fields to display when running `buildtest buildspec find`
+Determine the format fields to display when viewing table results
 
-`formatfields`
+`format`
 
 *   is optional
 
@@ -76,15 +76,15 @@ Determine the format fields to display when running `buildtest buildspec find`
 
 *   cannot be null
 
-*   defined in: [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-formatfields.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/formatfields")
+*   defined in: [buildtest configuration schema](settings-definitions-system-properties-buildspecs-properties-format.md "settings.schema.json#/definitions/system/properties/buildspecs/properties/format")
 
-### formatfields Type
+### format Type
 
 `string`
 
 ## terse
 
-A boolean to determine whether to enable terse mode when viewing buildspec cache
+A boolean to determine whether to enable terse mode
 
 `terse`
 

@@ -1,7 +1,7 @@
 # Untitled boolean in buildtest configuration schema Schema
 
 ```txt
-settings.schema.json#/definitions/system/properties/buildspecs/properties/terse
+settings.schema.json#/definitions/terse
 ```
 
 A boolean to determine whether to enable terse mode

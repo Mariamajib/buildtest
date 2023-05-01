@@ -66,6 +66,8 @@
 
 *   [Untitled object in buildtest configuration schema](./settings-definitions-system-properties-buildspecs.md "Specify configuration for buildtest buildspec command") – `settings.schema.json#/definitions/system/properties/buildspecs`
 
+*   [Untitled object in buildtest configuration schema](./settings-definitions-system-properties-report.md) – `settings.schema.json#/definitions/system/properties/report`
+
 *   [Untitled object in buildtest configuration schema](./settings-definitions-system-properties-processor.md "Specify processor information") – `settings.schema.json#/definitions/system/properties/processor`
 
 *   [Untitled object in buildtest configuration schema](./settings-definitions-system-properties-compilers.md "Declare compiler section for defining system compilers that can be referenced in buildspec") – `settings.schema.json#/definitions/system/properties/compilers`

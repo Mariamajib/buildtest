@@ -4,7 +4,7 @@
 settings.schema.json#/definitions/system/properties/buildspecs/properties/count
 ```
 
-Determine number of records to display when running `buildtest buildspec find`
+Determine number of records to display in a table
 
 | Abstract            | Extensible | Status         | Identifiable            | Custom Properties | Additional Properties | Access Restrictions | Defined In                                                                   |
 | :------------------ | :--------- | :------------- | :---------------------- | :---------------- | :-------------------- | :------------------ | :--------------------------------------------------------------------------- |
