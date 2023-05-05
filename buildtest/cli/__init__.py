@@ -223,12 +223,28 @@ Please report issues at https://github.com/buildtesters/buildtest/issues
     )
     parser.add_argument("-r", "--report", help="Specify path to test report file")
 
-    parent_parser = argparse.ArgumentParser(add_help=False)
-    parent_parser.add_argument(
-        "--pager", action="store_true", help="Enable PAGING when viewing result"
-    )
     subparsers = parser.add_subparsers(title="COMMANDS", dest="subcommands", metavar="")
 
+    def get_parent_parser():
+        parent_parser = {}
+
+        parent_parser["pager"] = argparse.ArgumentParser(add_help=False)
+        parent_parser["pager"].add_argument(
+            "--pager", action="store_true", help="Enable PAGING when viewing result"
+        )
+
+        parent_parser["file"] = argparse.ArgumentParser(add_help=False)
+        parent_parser["file"].add_argument(
+            "--file", help="Write configuration file to a new file"
+        )
+
+        parent_parser["row-count"] = argparse.ArgumentParser(add_help=False)
+        parent_parser["row-count"].add_argument(
+            "--row-count", action="store_true", help="Show row count as a global option"
+        )
+        return parent_parser
+
+    parent_parser = get_parent_parser()
     build_menu(subparsers)
     buildspec_menu(subparsers, parent_parser)
     config_menu(subparsers, parent_parser)
@@ -418,7 +434,7 @@ def history_menu(subparsers, parent_parser):
 
     Args:
         subparsers (argparse._SubParsersAction): Subparser object to add subparser
-        parent_parser (argparse.ArgumentParser): Parent parser object to add to subparser
+        parent_parser (argparse.ArgumentParser): Parent parser object
     """
 
     history_subcmd = subparsers.add_parser(
@@ -430,7 +446,9 @@ def history_menu(subparsers, parent_parser):
     )
 
     list_parser = history_subparser.add_parser(
-        "list", help="List a summary of all builds", parents=[parent_parser]
+        "list",
+        help="List a summary of all builds",
+        parents=[parent_parser["pager"], parent_parser["row-count"]],
     )
     list_parser.add_argument(
         "-n",
@@ -446,7 +464,9 @@ def history_menu(subparsers, parent_parser):
     )
 
     query = history_subparser.add_parser(
-        "query", help="Query information for a particular build"
+        "query",
+        help="Query information for a particular build",
+        parents=[parent_parser["pager"]],
     )
     query.add_argument("id", type=int, help="Select a build ID")
     query.add_argument(
@@ -668,12 +688,15 @@ def buildspec_menu(subparsers, parent_parser):
         "find",
         aliases=["f"],
         help="Query information from buildspecs cache",
-        parents=[parent_parser],
+        parents=[parent_parser["pager"], parent_parser["row-count"]],
     )
 
     # buildtest buildspec maintainers
     buildspec_maintainers = subparsers_buildspec.add_parser(
-        "maintainers", aliases=["m"], help="Query maintainers from buildspecs cache"
+        "maintainers",
+        aliases=["m"],
+        help="Query maintainers from buildspecs cache",
+        parents=[parent_parser["row-count"]],
     )
 
     subparsers_maintainers = buildspec_maintainers.add_subparsers()
@@ -717,7 +740,7 @@ def buildspec_menu(subparsers, parent_parser):
         metavar="", dest="buildspec_find_subcommand"
     )
     invalid_buildspecs = subparsers_invalid.add_parser(
-        "invalid", help="Show invalid buildspecs"
+        "invalid", help="Show invalid buildspecs", parents=[parent_parser["row-count"]]
     )
 
     # buildtest buildspec find invalid options
@@ -801,11 +824,6 @@ def buildspec_menu(subparsers, parent_parser):
         help="Limit number of entries queried in output",
     )
     buildspec_find.add_argument(
-        "--row-count",
-        action="store_true",
-        help="Print total count of records from the table.",
-    )
-    buildspec_find.add_argument(
         "-r",
         "--rebuild",
         help="Rebuild buildspec cache and find all buildspecs again",
@@ -864,7 +882,7 @@ def buildspec_menu(subparsers, parent_parser):
         "summary",
         aliases=["sm"],
         help="Print summary of buildspec cache",
-        parents=[parent_parser],
+        parents=[parent_parser["pager"]],
     )
     # buildtest buildspec validate
     buildspec_validate = subparsers_buildspec.add_parser(
@@ -945,7 +963,10 @@ def config_menu(subparsers, parent_parser):
         "validate", help="Validate buildtest settings file with schema."
     )
     view_parser = subparsers_config.add_parser(
-        "view", aliases=["v"], help="View configuration file", parents=[parent_parser]
+        "view",
+        aliases=["v"],
+        help="View configuration file",
+        parents=[parent_parser["pager"]],
     )
     view_parser.add_argument(
         "-t",
@@ -991,8 +1012,7 @@ def config_menu(subparsers, parent_parser):
     )
 
     compiler_find = subparsers_compiler.add_parser(
-        "find",
-        help="Find compilers",
+        "find", help="Find compilers", parents=[parent_parser["file"]]
     )
     compiler_find.add_argument(
         "-d",
@@ -1032,7 +1052,10 @@ def report_menu(subparsers, parent_parser):
     """
 
     parser_report = subparsers.add_parser(
-        "report", aliases=["rt"], help="Query test report", parents=[parent_parser]
+        "report",
+        aliases=["rt"],
+        help="Query test report",
+        parents=[parent_parser["pager"], parent_parser["row-count"]],
     )
     subparsers = parser_report.add_subparsers(
         description="Fetch test results from report file and print them in table format",
@@ -1045,7 +1068,10 @@ def report_menu(subparsers, parent_parser):
         "path", aliases=["p"], help="Print full path to the report file being used"
     )
     parser_report_summary = subparsers.add_parser(
-        "summary", aliases=["sm"], help="Summarize test report", parents=[parent_parser]
+        "summary",
+        aliases=["sm"],
+        help="Summarize test report",
+        parents=[parent_parser["pager"]],
     )
 
     # buildtest report
@@ -1133,11 +1159,6 @@ def report_menu(subparsers, parent_parser):
         action="store_true",
         help="Print output in machine readable format",
     )
-    parser_report.add_argument(
-        "--row-count",
-        action="store_true",
-        help="Print total count of records from the table.",
-    )
     parser_report_summary.add_argument(
         "--detailed", "-d", action="store_true", help="Enable a more detailed report"
     )
@@ -1164,13 +1185,19 @@ def inspect_menu(subparsers, parent_parser):
         "buildspec",
         aliases=["b"],
         help="Inspect a test based on buildspec",
-        parents=[parent_parser],
+        parents=[parent_parser["pager"]],
     )
     name = subparser.add_parser(
-        "name", aliases=["n"], help="Specify name of test", parents=[parent_parser]
+        "name",
+        aliases=["n"],
+        help="Specify name of test",
+        parents=[parent_parser["pager"]],
     )
     query_list = subparser.add_parser(
-        "query", aliases=["q"], help="Query fields from record"
+        "query",
+        aliases=["q"],
+        help="Query fields from record",
+        parents=[parent_parser["pager"]],
     )
 
     # buildtest inspect buildspec
@@ -1188,7 +1215,7 @@ def inspect_menu(subparsers, parent_parser):
         "list",
         aliases=["l"],
         help="List all test names, ids, and corresponding buildspecs",
-        parents=[parent_parser],
+        parents=[parent_parser["pager"], parent_parser["row-count"]],
     )
     inspect_list.add_argument(
         "-n",

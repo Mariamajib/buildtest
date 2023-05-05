@@ -80,10 +80,14 @@ class BuildspecCache:
 
         self.configuration = configuration
         self.filter = filterfields
-        self.format = formatfields
+        self.format = formatfields or self.configuration.target_config[
+            "buildspecs"
+        ].get("format")
         self.header = header
-        self.pager = pager
-        self.count = count
+        self.pager = pager or self.configuration.target_config.get("pager")
+        self.count = count or self.configuration.target_config["buildspecs"].get(
+            "count"
+        )
         # if --root is not specified we set to empty list instead of None
         self.roots = roots or []
 
@@ -93,10 +97,14 @@ class BuildspecCache:
         # stores invalid buildspecs and the error messages
         self.invalid_buildspecs = {}
 
-        self.terse = terse
+        self.terse = terse or self.configuration.target_config["buildspecs"].get(
+            "terse"
+        )
         self.color = checkColor(color)
 
-        self.rebuild = rebuild
+        self.rebuild = rebuild or self.configuration.target_config["buildspecs"].get(
+            "rebuild"
+        )
         self.cache = {}
 
         self.load_paths()
@@ -112,15 +120,17 @@ class BuildspecCache:
         return self.cache
 
     def load_paths(self):
-        """Add all paths to search for buildspecs. We must read configuration file
-        and check property ``buildspec_roots`` for list of directories to search.
-        We check all directories exist, if any fail we don't add them to path.
+        """Add all paths to search for buildspecs. We read configuration file
+        and check whether we need to load buildspecs from list of directories.
+        We check if directories exist, if any fail we don't add them to path.
         If no root directories are specified we load the default buildspec roots which are
         `tutorials <https://github.com/buildtesters/buildtest/tree/devel/tutorials>`_
         and `general_tests <https://github.com/buildtesters/buildtest/tree/devel/general_tests>`_ directory.
         """
 
-        buildspec_paths = self.configuration.target_config.get("buildspec_roots") or []
+        buildspec_paths = (
+            self.configuration.target_config["buildspecs"].get("root") or []
+        )
 
         if buildspec_paths:
             self.roots += buildspec_paths
@@ -768,7 +778,7 @@ class BuildspecCache:
         """
 
         # Don't print anything if --quiet is set
-        if quiet:
+        if quiet and self.rebuild:
             return
 
         self.terse = terse or self.terse
@@ -904,13 +914,16 @@ class BuildspecCache:
 
         console.print(table)
 
-    def print_invalid_buildspecs(self, error=None, terse=None, header=None):
+    def print_invalid_buildspecs(
+        self, error=None, terse=None, header=None, row_count=None
+    ):
         """Print invalid buildspecs from cache file. This method implements command ``buildtest buildspec find invalid``
 
         Args:
             error (bool, optional): Display error messages for invalid buildspecs. Default is ``False`` where we only print list of invalid buildspecs
             terse (bool, optional): Display output in machine readable format.
             header (bool, optional): Determine whether to print header column in machine readable format.
+            row_count (bool, optional): Display row count of invalid buildspces table
         """
 
         terse = terse or self.terse
@@ -922,6 +935,10 @@ class BuildspecCache:
 
         if not self.get_invalid_buildspecs():
             console.print("There are no invalid buildspecs in cache")
+            return
+
+        if row_count:
+            print(len(self.cache["invalids"].keys()))
             return
 
         # implementation for machine readable format specified via --terse
@@ -1122,7 +1139,7 @@ def show_failed_buildspecs(
         report_file (str, optional): Full path to report file to read
         theme (str, optional): Color theme to choose. This is the Pygments style (https://pygments.org/docs/styles/#getting-a-list-of-available-styles) which is specified by ``--theme`` option
     """
-    results = Report(report_file=report_file)
+    results = Report(report_file=report_file, configuration=configuration)
     all_failed_tests = results.get_test_by_state(state="FAIL")
 
     if test_names:
@@ -1310,6 +1327,7 @@ def buildspec_maintainers(
     header=None,
     color=None,
     name=None,
+    row_count=None,
 ):
     """Entry point for ``buildtest buildspec maintainers`` command.
 
@@ -1320,11 +1338,16 @@ def buildspec_maintainers(
         header (bool, optional): If True disable printing of headers
         color (bool, optional): Print output of table with selected color
         name (str, optional): List all buildspecs corresponding to maintainer name. This command is specified via ``buildtest buildspec maintainers find <name>``
+        row_count (bool, opotional): Print row count of the maintainer table. This command is specified via ``buildtest --row-count buildspec maintainers -l``
     """
 
     cache = BuildspecCache(
         configuration=configuration, terse=terse, header=header, color=color
     )
+
+    if row_count:
+        print(len(cache.list_maintainers()))
+        return
 
     if list_maintainers:
         cache.print_maintainer()
@@ -1358,7 +1381,7 @@ def buildspec_find(args, configuration):
     )
 
     if args.buildspec_find_subcommand == "invalid":
-        cache.print_invalid_buildspecs(error=args.error)
+        cache.print_invalid_buildspecs(error=args.error, row_count=args.row_count)
         return
 
     # buildtest buildspec find --tags
