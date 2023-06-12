@@ -32,6 +32,7 @@ settings.schema.json#/definitions/system
 | [compilers](#compilers)     | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-compilers.md "settings.schema.json#/definitions/system/properties/compilers")     |
 | [executors](#executors)     | `object`  | Required | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-executors.md "settings.schema.json#/definitions/system/properties/executors")     |
 | [cdash](#cdash)             | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-cdash.md "settings.schema.json#/definitions/system/properties/cdash")             |
+| [profiles](#profiles)       | `object`  | Optional | cannot be null | [buildtest configuration schema](settings-definitions-system-properties-profiles.md "settings.schema.json#/definitions/system/properties/profiles")       |
 
 ## hostnames
 
@@ -302,3 +303,21 @@ Specify CDASH configuration used to upload tests via 'buildtest cdash' command
 ### cdash Type
 
 `object` ([Details](settings-definitions-system-properties-cdash.md))
+
+## profiles
+
+The profiles section is used for declaring one or more profiles that can be used to run `buildtest build` that are captured as command options
+
+`profiles`
+
+*   is optional
+
+*   Type: `object` ([Details](settings-definitions-system-properties-profiles.md))
+
+*   cannot be null
+
+*   defined in: [buildtest configuration schema](settings-definitions-system-properties-profiles.md "settings.schema.json#/definitions/system/properties/profiles")
+
+### profiles Type
+
+`object` ([Details](settings-definitions-system-properties-profiles.md))

@@ -49,6 +49,17 @@ Reference this group by using
 | Property | Type | Required | Nullable | Defined by |
 | :------- | :--- | :------- | :------- | :--------- |
 
+## Definitions group list\_of\_positive\_integers
+
+Reference this group by using
+
+```json
+{"$ref":"definitions.schema.json#/definitions/list_of_positive_integers"}
+```
+
+| Property | Type | Required | Nullable | Defined by |
+| :------- | :--- | :------- | :------- | :--------- |
+
 ## Definitions group int\_or\_list
 
 Reference this group by using

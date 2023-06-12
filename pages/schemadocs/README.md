@@ -110,6 +110,10 @@
 
 *   [Untitled object in buildtest configuration schema](./settings-definitions-system-properties-cdash.md "Specify CDASH configuration used to upload tests via 'buildtest cdash' command") – `settings.schema.json#/definitions/system/properties/cdash`
 
+*   [Untitled object in buildtest configuration schema](./settings-definitions-system-properties-profiles.md "The profiles section is used for declaring one or more profiles that can be used to run buildtest build that are captured as command options") – `settings.schema.json#/definitions/system/properties/profiles`
+
+*   [Untitled object in buildtest configuration schema](./settings-definitions-profiles-properties-filter.md) – `settings.schema.json#/definitions/profiles/properties/filter`
+
 *   [Untitled object in buildtest configuration schema](./settings-definitions-system.md) – `settings.schema.json#/definitions/system`
 
 *   [Untitled object in buildtest configuration schema](./settings-definitions-compiler_section.md "A compiler section is composed of cc, cxx and fc wrapper these are required when you need to specify compiler wrapper") – `settings.schema.json#/definitions/compiler_section`
@@ -125,6 +129,8 @@
 *   [Untitled object in buildtest configuration schema](./settings-definitions-cobalt.md "An instance object of cobalt executor") – `settings.schema.json#/definitions/cobalt`
 
 *   [Untitled object in buildtest configuration schema](./settings-definitions-pbs.md "An instance object of cobalt executor") – `settings.schema.json#/definitions/pbs`
+
+*   [Untitled object in buildtest configuration schema](./settings-definitions-profiles.md) – `settings.schema.json#/definitions/profiles`
 
 *   [Untitled object in compiler schema](./compiler-definitions-default_compiler_all.md "Specify compiler configuration for all compiler groups") – `compiler.schema.json#/definitions/default_compiler_all`
 
@@ -198,6 +204,8 @@
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-list_of_ints.md) – `definitions.schema.json#/definitions/list_of_ints`
 
+*   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-list_of_positive_integers.md) – `definitions.schema.json#/definitions/list_of_positive_integers`
+
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-file_regex.md "Specify a list of regular expressions to match files in the current working directory") – `definitions.schema.json#/definitions/file_regex`
 
 *   [Untitled array in JSON Schema Definitions File. ](./definitions-definitions-needs.md "A list of test names that are dependency before runnning job") – `definitions.schema.json#/definitions/needs`
@@ -215,6 +223,8 @@
 *   [Untitled array in buildtest configuration schema](./settings-definitions-cobalt-properties-options.md "Specify any options for qsub for this executor when running all jobs associated to this executor") – `settings.schema.json#/definitions/cobalt/properties/options`
 
 *   [Untitled array in buildtest configuration schema](./settings-definitions-pbs-properties-options.md "Specify any options for qsub for this executor when running all jobs associated to this executor") – `settings.schema.json#/definitions/pbs/properties/options`
+
+*   [Untitled array in buildtest configuration schema](./settings-definitions-profiles-properties-filter-properties-type.md "Specify the type field to determine which schema to use during filtering") – `settings.schema.json#/definitions/profiles/properties/filter/properties/type`
 
 *   [Untitled array in buildtest configuration schema](./settings-definitions-unique_string_array.md) – `settings.schema.json#/definitions/unique_string_array`
 
