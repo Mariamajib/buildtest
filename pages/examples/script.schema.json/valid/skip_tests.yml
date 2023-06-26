@@ -1,0 +1,16 @@
+buildspecs:
+  skip:
+    type: script
+    executor: generic.local.bash
+    description: This test is skipped
+    skip: Yes
+    tags: [tutorials]
+    run: hostname
+
+  unskipped:
+    type: script
+    executor: generic.local.bash
+    description: This test is not skipped
+    skip: No
+    tags: [tutorials]
+    run: hostname
